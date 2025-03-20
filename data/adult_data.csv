@@ -1,0 +1,93 @@
+,parity,species,lat,lon,elev,topt_a,ctmin_a,ctmax_a,source,za,ze,n,source_lh,l,m,activity,substrate,biome,gamma_ex,eggs_seen,hatchlings_seen,nest_depth,nest_shade
+1,Oviparous,Anolis_carolinensis,31,-89.9,92,32.1,4.7,41.7,b,2.541318763,0.229511867,1,sb,NA,0.333333333,Diurnal,Arboreal,Temperate Broadleaf & Mixed Forests,NA,5,9,5,1
+2,Oviparous,Anolis_cristatellus,18.5,-66.2,0,29.1,8.9,37.1,b,2.804894658,0.237359997,1,sb,NA,0.541666667,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,1,12,5,1
+3,Oviparous,Anolis_cupreus,10.4,-85.1,56,30.8,11.8,38.4,b,1.836277574,0.13152603,1,sb,1.5,0.25,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,1,5,4,NA,NA
+4,Oviparous,Anolis_gundlachi,18.3,-65.7,168,28.1,6.3,35.4,b,1.848554744,0.119040814,1,sb,3,0.75,Diurnal,Arboreal,Tropical & Subtropical Moist Broadleaf Forests,0.05,1,12,NA,NA
+5,Oviparous,Anolis_humilis,10.4,-83.8,66,27.5,12.4,35.6,b,1.141514007,0.105494996,1,sb,1.5,0.333333333,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,1,1,11,NA,NA
+6,Oviparous,Anolis_lemurinus,10.4,-83.8,66,33.5,12.9,37.3,b,4.380993063,0.325781651,1,sb,NA,NA,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,1,12,NA,NA
+7,Oviparous,Anolis_limifrons,10.4,-83.8,66,27.9,12.3,36.8,b,1.563044576,0.083912681,1,sb,1,0.166666667,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,0,1,12,NA,NA
+8,Oviparous,Anolis_lionotus,10.4,-83.8,66,28.4,14.7,36.7,b,5.122465134,0.410382999,1,sb,NA,0.139166667,Diurnal,Semi-Aquatic,Tropical & Subtropical Moist Broadleaf Forests,NA,1,12,NA,NA
+9,Oviparous,Anolis_tropidolepis,10.3,-84.8,1535,27,9.5,33.1,b,2.783883401,0.192832335,1,sb,2,0.666666667,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,1,1,12,NA,NA
+10,Oviparous,Aspidoscelis_tigris,43,-116.3,837,37.6,10.5,45.1,b,15.57939827,0.945318926,1.3,sb,8,0.666666667,Diurnal,Terrestrial,Deserts & Xeric Shrublands,0.986996299,5,8,NA,NA
+11,Oviparous,Callisaurus_draconoides,31.132,-114.942,72,35.8,13.3,43.1,dg,11.22,1.1,4.335,dg,5.9,0.75,Diurnal,Terrestrial,Deserts & Xeric Shrublands,1.924052446,5,8,NA,NA
+12,Oviparous,Cophosaurus_texanus,26.682,-103.748,1161,37.1,15.4,44.4,dg,6.61,0.66,4.55,dg,6,0.833333333,Diurnal,Saxicolous&Terrestrial,Deserts & Xeric Shrublands,2.019478346,5,10,NA,NA
+13,Oviparous,Ctenotus_regius,-34.2,140,39,36.9,8.7,45.1,b,5.176426779,0.436692691,2,sb,4,0.916666667,Diurnal,Terrestrial,Deserts & Xeric Shrublands,0.318201884,12,4,5,0
+14,Oviparous,Ctenotus_taeniolatus,-30.5,151.7,1002,37.3,11.4,44.7,b,6.681599369,0.485729778,3,sb,NA,1.416666667,Diurnal,Terrestrial,"Tropical & Subtropical Grasslands, Savannas & Shrublands",NA,2,2,5,0
+15,Oviparous,Dipsosaurus_dorsalis,33.8,-115.5,541,40.3,14,47.5,b,65.33128767,4.261964921,3.5,sb,NA,2.583333333,Diurnal,Terrestrial,Deserts & Xeric Shrublands,NA,4,8,NA,NA
+16,Oviparous,Elgaria_multicarinata,33.7,-117.8,22,34.6,12.4,43.6,b,29.25069613,0.26603495,8.8,sb,NA,1.5,Cathemeral,Cryptic,Mediterranean,NA,4,8,NA,NA
+17,Oviparous,Gallotia_stehlini,28.1,-15.4,0,38.1,2,40.2,b,126.143885,1.959664825,9.8,sb,NA,2.916666667,Diurnal,Terrestrial,Mediterranean,NA,5,9,NA,NA
+18,Oviparous,Lacerta_agilis,51.8,5.9,79,37.9,5.9,43.9,b,10.80155742,0.479683155,5.3,sb,12,1,Diurnal,Terrestrial,Temperate Broadleaf & Mixed Forests,7.511929548,6,7,5,0
+19,Oviparous,Lampropholis_coggeri,-17.2,145.5,717,31.43,9.96,43.42,b,0.923193876,0.092695839,2.38,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,11,2,10,1
+20,Oviparous,Lampropholis_coggeri,-17.2,145.5,717,28.8,13.48,42.57,b,0.923193876,0.092695839,2.38,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,11,2,10,1
+21,Oviparous,Lampropholis_coggeri,-17.2,145.5,717,31.9,12.97,43.05,b,0.923193876,0.092695839,2.38,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,11,2,10,1
+22,Oviparous,Lampropholis_coggeri,-17.4,145.5,879,28.2,12.57,42.05,b,0.923193876,0.092695839,2.38,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,11,2,10,1
+23,Oviparous,Lampropholis_coggeri,-17.7,145.5,919,29.28,14.62,41.78,b,0.923193876,0.092695839,2.38,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,11,2,10,1
+24,Oviparous,Petrosaurus_thalassinus,23.555,-109.86,500,31.3,17.1,39.6,dg,26.92,1.45,8.6,dg,NA,2,Diurnal,Saxicolous,Tropical & Subtropical Dry Broadleaf Forests,NA,5,8,NA,NA
+25,Oviparous,Phrynosoma_asio,17.63,-99.526,1200,35.9,11.8,44.8,dg,33.11,1.82,16.9,dg,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Dry Broadleaf Forests,NA,6,8,NA,NA
+26,Oviparous,Phrynosoma_cornutum,30.825,-108.474,1435,34.2,9.46,47.9,dg,16.98,0.48,27.9,dg,NA,1.583333333,Diurnal,Terrestrial,"Temperate Grasslands, Savannas & Shrublands",NA,7,9,10,0
+27,Oviparous,Phrynosoma_coronatum,23.969,-109.938,29,34.7,12.8,44.4,dg,18.2,1.05,11.8,dg,NA,2,Diurnal,Terrestrial,Deserts & Xeric Shrublands,NA,5,8,NA,NA
+28,Oviparous,Platysaurus_intermedius,-24.6,31.2,544,33,8.9,44.8,b,11.03387483,0.358416656,2,sb,NA,NA,Diurnal,Saxicolous,"Tropical & Subtropical Grasslands, Savannas & Shrublands",NA,9,3,NA,NA
+29,Oviparous,Podarcis_muralis,40.7,-4.1,1164,36.6,8.3,44.2,b,6.046698997,0.357940571,3.6,sb,16,1,Diurnal,Saxicolous&Terrestrial,Temperate Broadleaf & Mixed Forests,7.516821755,4,8,15,NA
+30,Oviparous,Psammodromus_algirus,40.6,-5.9,923,36.1,7,43.5,b,7.425927896,0.506373278,3.6,sb,5,1,Diurnal,Arboreal&Saxicolous&Terrestrial,Mediterranean,1.062275467,4,8,5,1
+31,Oviparous,Psammodromus_hispanicus,40.4,-4.3,730,35.6,8.8,45.5,b,2.685212512,0.226889326,2.9,sb,0.9,0.416666667,Diurnal,Terrestrial,Mediterranean,0,4,8,NA,NA
+32,Oviparous,Sceloporus_aeneus,19.199,-99.847,3220,34.4,12.9,39.8,dg,4.57,0.62,6.66,dg,1.3,0.5,Diurnal,Terrestrial,Tropical & Subtropical Coniferous Forests,NA,5,8,5,0
+33,Oviparous,Sceloporus_brownorum,21.842,-101.714,2200,34.5,11.3,42.5,dg,2.3,0.22,9,dg,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Coniferous Forests,NA,4,9,NA,NA
+34,Oviparous,Sceloporus_chrysostictus,19.08,-91.05,2,35.8,19.2,40.7,dg,5.25,0.54,2.45,dg,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,5,8,NA,NA
+35,Oviparous,Sceloporus_cowlesi,26.806,-102.017,716,35.6,13.1,41.6,dg,8.91,0.62,9.1,dg,5,0.916666667,Diurnal,Arboreal&Saxicolous,Deserts & Xeric Shrublands,2.68519632,6,8,NA,NA
+36,Oviparous,Sceloporus_cozumelae,21.42,-87.678,2,34.5,17.7,42.1,dg,3.946414657,0.581825298,1.8,sb,NA,1,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,4,9,NA,NA
+37,Oviparous,Sceloporus_gadoviae,19.178,-102.038,616,34.6,15.9,41.2,dg,5.5,0.72,3.75,dg,NA,0.666666667,Diurnal,Saxicolous,Tropical & Subtropical Dry Broadleaf Forests,NA,1,12,NA,NA
+38,Oviparous,Sceloporus_graciosus,33.9,-116.4,383,32.6,4.7,44.7,b,6.31,0.78,5.4,dg,8,1,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,4.099830781,5,8,NA,NA
+39,Oviparous,Sceloporus_graciosus,44.725,-110.703,2300,32.3,9.1,43.6,dg,6.31,0.78,5.4,dg,8,1,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,4.099830781,6,9,NA,NA
+40,Oviparous,Sceloporus_magister,31.016,-114.838,11,34.9,10.5,39.7,dg,26.3,1.55,9.3,dg,6,1.75,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,2.744211624,5,8,5,0.5
+41,Oviparous,Sceloporus_merriami,29.2,-103,644,32.8,14.1,41.5,b,4.37,0.55,4.105,dg,6,0.916666667,Diurnal,Saxicolous,Deserts & Xeric Shrublands,1.821968925,5,8,NA,NA
+42,Oviparous,Sceloporus_merriami,29.3,-103.15,994,35,14.1,41.5,b,4.37,0.55,4.105,dg,6,0.916666667,Diurnal,Saxicolous,Deserts & Xeric Shrublands,1.821968925,5,8,NA,NA
+43,Oviparous,Sceloporus_occidentalis,31.039,-115.765,882,33.2,10.8,38.5,dg,13.49,0.69,10.1,dg,5,1.5,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,1.606919515,5,9,NA,NA
+44,Oviparous,Sceloporus_occidentalis,34.03,-117.82,232,34.8,4.8,44.1,b,13.49,0.69,10.1,dg,5,1.5,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,1.606919515,4,8,NA,NA
+45,Oviparous,Sceloporus_occidentalis,45.8,-121.5,218,34.3,4.6,44.1,b,13.49,0.69,10.1,dg,5,1.5,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,1.606919515,4,8,NA,NA
+46,Oviparous,Sceloporus_orcutti,31.039,-115.765,882,33.1,10.2,36.2,dg,24.55,1.55,10.1,dg,NA,3,Diurnal,Arboreal&Saxicolous,Deserts & Xeric Shrublands,NA,5,9,NA,NA
+47,Oviparous,Sceloporus_parvus,20.434,-98.746,2331,32.7,13.5,40.3,dg,3.63,0.43,3.4,dg,NA,NA,Diurnal,Terrestrial,Deserts & Xeric Shrublands,NA,3,5,NA,NA
+48,Oviparous,Sceloporus_pyrocephalus,19.178,-102.038,616,33.9,16.2,41.2,dg,5.89,0.85,5.23,dg,NA,NA,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Dry Broadleaf Forests,NA,5,8,NA,NA
+49,Oviparous,Sceloporus_siniferus,16.032,-95.42,50,34.8,16.7,43,dg,5.60164109,0.856808276,4.9,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Dry Broadleaf Forests,NA,1,12,NA,NA
+50,Oviparous,Sceloporus_spinosus,19.735,-98.844,2441,31.8,16.9,39.8,dg,18.62,0.91,13.85,dg,NA,NA,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,NA,5,9,NA,NA
+51,Oviparous,Sceloporus_undulatus,33.556,-81.731,114,32.9,11.4,40.4,dg,8.91,0.72,9.13,dg,4,0.791666667,Diurnal,Arboreal&Saxicolous&Terrestrial,Temperate Broadleaf & Mixed Forests,1.452591602,4,8,5,0
+52,Oviparous,Sceloporus_undulatus,34.43,-82.85,206,35.5,11.4,40.4,b,8.91,0.72,9.13,dg,4,0.791666667,Diurnal,Arboreal&Saxicolous&Terrestrial,Temperate Broadleaf & Mixed Forests,1.452591602,4,8,5,0
+53,Oviparous,Sceloporus_undulatus,37.2,-105.9,2336,38.2,6.5,43.3,b,8.91,0.72,9.13,dg,4,0.791666667,Diurnal,Arboreal&Saxicolous&Terrestrial,Temperate Broadleaf & Mixed Forests,1.452591602,4,8,5,0
+54,Oviparous,Sceloporus_utiformis,20.216,-105.339,245,34,15,40.6,dg,8.71,1.1,7.02,dg,NA,0.75,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Dry Broadleaf Forests,NA,7,1,NA,NA
+55,Oviparous,Sceloporus_variabilis,10.6,-85.7,0,37.5,10.2,43.1,b,6.17,0.79,3.85,dg,1.5,0.333333333,Diurnal,Arboreal&Saxicolous&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,3.85,3,9,NA,NA
+56,Oviparous,Sceloporus_variabilis,19.906,-97.632,1402,33.7,10,40.7,dg,6.17,0.79,3.85,dg,1.5,0.333333333,Diurnal,Arboreal&Saxicolous&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,3.85,3,10,NA,NA
+57,Oviparous,Sceloporus_woodi,29.167,-81.792,48,37.2,18.9,40.4,dg,6.31,0.48,4.805,dg,NA,0.833333333,Diurnal,Terrestrial,Temperate Coniferous Forests,NA,4,11,5,NA
+58,Oviparous,Sceloporus_zosteromus,27.888,-113.696,78,33.9,11.4,40.7,dg,11.22,1.15,6,dg,NA,NA,Cathemeral,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,NA,5,8,NA,NA
+59,Oviparous,Sphaerodactylus_nicholsi,18,-66.9,58,31.1,12.6,40.5,b,0.213027813,0.025822602,1,sb,NA,0.5,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,5,9,NA,NA
+60,Oviparous,Sphaerodactylus_roosevelti,18,-66.9,58,28.7,11.4,39.5,b,1.066306586,0.187673432,1,sb,NA,1.583333333,Nocturnal,Arboreal&Terrestrial,Tropical & Subtropical Dry Broadleaf Forests,NA,5,9,NA,NA
+61,Oviparous,Sphaerodactylus_townsendi,18.3,-65.7,168,29,11.4,41.7,b,0.428556793,0.050098271,1,sb,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,5,9,NA,NA
+62,Oviparous,Takydromus_septentrionalis,30.2,122.2,10,31.5,4.9,42.3,b,5.23829349,0.363585976,3.1,sb,NA,1.083333333,Diurnal,Arboreal&Terrestrial,Temperate Broadleaf & Mixed Forests,NA,4,8,NA,NA
+63,Oviparous,Takydromus_sexlineatus,24.8,113.6,66,35.1,6.4,42.2,b,4.086180257,0.170059883,2.2,sb,NA,NA,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Moist Broadleaf Forests,NA,4,8,NA,NA
+64,Oviparous,Urosaurus_bicarinatus,16.929,-96.832,1183,33.3,13.1,39.3,dg,3.934941911,0.581825298,5.4,sb,NA,NA,Diurnal,Arboreal,Tropical & Subtropical Dry Broadleaf Forests,NA,6,8,NA,NA
+65,Oviparous,Urosaurus_nigricauda,23.555,-109.86,500,35.5,16.2,39.8,dg,3.63,0.55,4.5,dg,NA,NA,Diurnal,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,NA,4,10,NA,NA
+66,Oviparous,Urosaurus_ornatus,31.353,-106.565,1300,38,9.58,43.7,dg,3.98,0.47,7.4,dg,3,0.708333333,Diurnal,Arboreal&Saxicolous,Deserts & Xeric Shrublands,0.37,4,8,NA,NA
+67,Oviparous,Uta_stansburiana,30.436,-116.029,6,34.7,9.1,40.6,dg,3.89,0.51,3.8,dg,4.8,0.75,Diurnal,Terrestrial,Deserts & Xeric Shrublands,1.121290771,5,8,NA,NA
+68,Oviparous,Uta_stansburiana,39.5,-107.8,1851,36.7,7.8,43.7,b,3.89,0.51,3.8,dg,4.8,0.75,Diurnal,Terrestrial,Deserts & Xeric Shrublands,1.121290771,5,8,NA,NA
+69,Viviparous,Eulamprus_tympanum,-36.4,148.4,1846,34.3,2.9,39.8,b,14.29124361,0.823930043,2.7,sb,15,2,Diurnal,Arboreal&Terrestrial,Temperate Broadleaf & Mixed Forests,4.729917495,12,2,NA,NA
+70,Viviparous,Hemiergis_peronii,-34.5,138.3,1,30.2,9.6,38.8,b,4.876664713,0.309957311,2,sb,NA,2,Cathemeral,Fossorial&Terrestrial,Mediterranean,NA,10,2,NA,NA
+71,Viviparous,Phrynosoma_hernandesi,31.952,-104.849,2290,35,2.75,43.5,dg,15.49,0.85,18,dg,NA,1.5,Diurnal,Terrestrial,Deserts & Xeric Shrublands,NA,4,8,NA,NA
+72,Viviparous,Phrynosoma_orbiculare,20.064,-98.201,2502,31.4,4.5,37.8,dg,12.88,0.91,12.65,dg,5,NA,Diurnal,Terrestrial,Tropical & Subtropical Coniferous Forests,NA,8,4,NA,NA
+73,Viviparous,Phrynosoma_sherbrookei,17.552,-99.269,1997,36.5,12,43.1,dg,9,0.96,5.5,dg,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Coniferous Forests,NA,3,8,NA,NA
+74,Viviparous,Phrynosoma_taurus,17.627,-99.526,1200,34.4,12.3,44,dg,18.03,0.88,11.33,dg,NA,NA,Diurnal,Terrestrial,Tropical & Subtropical Dry Broadleaf Forests,NA,3,8,NA,NA
+75,Viviparous,Pseudemoia_entrecasteauxii,-36.4,148.4,1846,33.2,2.5,42.8,b,2.907639969,0.225670661,3.1,sb,NA,1,Diurnal,Terrestrial,Temperate Broadleaf & Mixed Forests,NA,10,3,NA,NA
+76,Viviparous,Pseudemoia_entrecasteauxii,-36.4,148.4,1846,32.7,2.5,42.8,b,2.907639969,0.225670661,3.1,sb,NA,1,Diurnal,Terrestrial,Temperate Broadleaf & Mixed Forests,NA,10,3,NA,NA
+77,Viviparous,Sceloporus_bicanthalis,19.12,-99.747,4151,34.2,12.6,41.5,dg,3.06,0.19,7.21,dg,1.3,0.5,Diurnal,Terrestrial,Tropical & Subtropical Coniferous Forests,0,4,11,NA,NA
+78,Viviparous,Sceloporus_cyanogenys,25.604,-100.35,1283,30.3,10.8,39.6,dg,37.15,1.12,13.15,dg,NA,2.333333333,Diurnal,Saxicolous&Terrestrial,Deserts & Xeric Shrublands,NA,1,4,NA,NA
+79,Viviparous,Sceloporus_druckercolini,17.65,-100.523,2486,33.6,13.1,42.5,dg,17.25,0.85,9.5,dg,NA,NA,Diurnal,Arboreal,Tropical & Subtropical Coniferous Forests,NA,9,5,NA,NA
+80,Viviparous,Sceloporus_grammicus,19.318,-99.194,2320,33.1,10,39.9,dg,4.9,0.48,4.755,dg,3,0.416666667,Diurnal,Arboreal&Saxicolous,Deserts & Xeric Shrublands,0.23775,9,10,NA,NA
+81,Viviparous,Sceloporus_jarrovii,25.735,-103.676,1312,32.1,14.6,39.5,dg,12.88,1.1,6.7,dg,3.8,0.333333333,Diurnal,Saxicolous,Deserts & Xeric Shrublands,1.065976312,1,7,NA,NA
+82,Viviparous,Sceloporus_macdougalli,16.032,-95.42,50,28.2,11.7,39.1,dg,13.3,1.29,2.33,dg,8,NA,Diurnal,Saxicolous,Tropical & Subtropical Dry Broadleaf Forests,NA,12,5,NA,NA
+83,Viviparous,Sceloporus_malachiticus,10.3,-84.8,1535,36.3,9.7,42.8,b,12.3,1.05,5.25,dg,NA,0.75,Diurnal,Arboreal&Saxicolous&Terrestrial,Tropical & Subtropical Coniferous Forests,NA,10,3,NA,NA
+84,Viviparous,Sceloporus_megalepidurus,19.76,-97.604,2413,33.8,9,39.2,dg,4.038951461,0.595773552,2,sb,NA,NA,Diurnal,Terrestrial,Deserts & Xeric Shrublands,NA,10,4,NA,NA
+85,Viviparous,Sceloporus_minor,20.874,-99.2241,2537,32.6,9.6,37.2,dg,7.73,0.69,4.56,dg,NA,NA,Diurnal,Saxicolous,Deserts & Xeric Shrublands,NA,7,10,NA,NA
+86,Viviparous,Sceloporus_mucronatus,19.208,-99.277,3508,34,5.9,37.6,dg,18.62,1,4.69,dg,NA,2.083333333,Diurnal,Saxicolous,Tropical & Subtropical Coniferous Forests,NA,4,8,NA,NA
+87,Viviparous,Sceloporus_omiltemanus,17.592,-99.815,2371,31.9,8.9,35.2,dg,18.62,1.1,6.245,dg,NA,NA,Diurnal,Arboreal&Saxicolous,Tropical & Subtropical Coniferous Forests,NA,11,2,NA,NA
+88,Viviparous,Sceloporus_palaciosi,19.265,-99.298,3168,33.7,8.8,39.4,dg,4.54705947,0.856808276,4,sb,NA,NA,Diurnal,Arboreal&Terrestrial,Tropical & Subtropical Coniferous Forests,NA,1,12,NA,NA
+89,Viviparous,Sceloporus_scitulus,17.592,-99.815,2371,30.9,7.4,37.6,dg,10.12282275,1.372066796,6,sb,NA,NA,Diurnal,Arboreal&Saxicolous,Tropical & Subtropical Coniferous Forests,NA,4,8,NA,NA
+90,Viviparous,Sceloporus_torquatus,19.318,-99.194,2320,33.2,8.8,39.2,dg,24.55,1.07,8.05,dg,NA,1.591666667,Diurnal,Saxicolous,Deserts & Xeric Shrublands,NA,10,5,NA,NA
+91,Viviparous,Xantusia_riversiana,32.9,-118.5,349,29,6.6,39,b,11.37989051,0.619009243,3.3,sb,32.9,3.5,Diurnal,Saxicolous&Terrestrial,Mediterranean,14.71660894,3,11,NA,NA
+92,Viviparous,Xantusia_vigilis,33.9,-116.4,383,31.7,6.9,41.6,b,1.432415234,0.197562417,1.78,sb,NA,2.75,Cathemeral,Arboreal&Saxicolous&Terrestrial,Deserts & Xeric Shrublands,NA,4,8,NA,NA
