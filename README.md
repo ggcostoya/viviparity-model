@@ -1,6 +1,6 @@
 # A general model for the evolution of live birth in lizards
 
-Guillermo Garcia-Costoya<sup>1</sup>, Saúl Domínguez-Guerrero<sup>2,3</sup>, Lutz Fromhage<sup>4</sup>, Matthew A. Gifford<sup>5</sup>, Eric A. Riddell<sup>6</sup>, Michael L. Logan<sup>1</sup>.
+Guillermo Garcia-Costoya<sup>1</sup>, Saúl Domínguez-Guerrero<sup>2,3</sup>, Lutz Fromhage<sup>4</sup>, Matthew E. Gifford<sup>5</sup>, Eric A. Riddell<sup>6</sup>, Michael L. Logan<sup>1</sup>.
 
 Affiliations: <sup>1</sup>1Department of Biology and Program in Ecology, Evolution, and Conservation Biology, University of Nevada, Reno, Reno, NV, 89557, USA. <sup>2</sup>2Department of Ecology and Evolutionary Biology, Yale University, New Haven, CT, 06511, USA. <sup>3</sup>Yale Institute for Biospheric Studies, Yale University, New Haven, CT, 06511 USA. <sup>4</sup>Department of Biological and Environmental Science, University of Jyvaskyla, Jyvaskyla, Finland. <sup>5</sup>University of Central Arkansas, 201 Donaghey Ave., LSC 180, Conway, AR 72035, USA. <sup>6</sup>Department of Biology, University of North Carolina – Chapel Hill, Chapel Hill, NC, 27599, USA.
 
