@@ -32,7 +32,7 @@ length(intersect(tphys_e$species, unique(model_data$species))) # 6
 # read adult thermal physiology, life history and additional info
 
 # load adult data
-adult_data <- read_csv("data/adult_thermal_phys_lh_traits_additional_info.csv")
+adult_data <- read_csv("data/adult_data.csv")
 
 # determine number of populations
 length(unique(paste(adult_data$species, adult_data$lat, adult_data$elev))) # 89
@@ -139,7 +139,7 @@ topt_e <- read.csv("data/embryonic_thermal_phys.csv") |>
 # prepare data for model
 model_dat <- model_test_data |> 
   filter(alpha == 0.5) |> # filter only species with alpha = 0.5
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(dev_check == 1) |> # filter only months when embryonic development occurs
   filter(if_else(!is.na(depth), depth == 5, TRUE)) |> # if no depth data use 5 cm 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) |> # if no shade data use 0.5
@@ -192,7 +192,7 @@ load("data/model_test_data.RData")
 model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma  == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
   group_by(species, lat, lon, elev, parity) %>% 
@@ -205,13 +205,13 @@ model_test_data %>%
 model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma  == 2) %>%  
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
   group_by(species, lat, lon, elev, parity) %>% 
   summarise(opt_d = mean(opt_d, na.rm = T)) %>% 
-  filter(parity == "Oviparous") |> 
-  filter(opt_d > 0.5)
+  #filter(parity == "Oviparous") |> 
+  #filter(opt_d > 0.5) |>
   group_by(parity) %>%
   summarise(d1 = sum(opt_d == 1, na.rm = T),
             d05 = sum(opt_d > 0.5 & opt_d < 1, na.rm = T),
@@ -226,7 +226,7 @@ load("data/model_test_data.RData")
 model_test_data_stats <- model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
   group_by(species, lat, lon, elev, parity, n, ze, za) %>% 
@@ -237,56 +237,10 @@ model_test_data_stats <- model_test_data %>%
          z_elev = as.vector(scale(elev)),
          z_msp = as.vector(scale(msp)))
 
-model_test_data_stats %>%
-  ggplot(aes(x = z_elev, y = opt_d, col = msp)) +
-  geom_point() +
-  geom_smooth(method = "glm", method.args = list(family = "binomial"))
-  
 # run model
 d_model <- glmer(opt_d ~ z_lat * z_elev * z_msp + (1|species), 
                  family = binomial(link = "logit"),
                  data = model_test_data_stats)
 summary(d_model)
 confint(d_model)
-  
-## Model on alpha and gamma ----
-
-# read model_data
-load("data/model_test_data.RData")
-
-# prepare data for stats
-model_test_data_stats <- model_test_data %>% 
-  filter(dev_check == 1) %>%
-  filter(is.na(gamma_ex)) %>% # remove species for which gamma can be calculated
-  filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
-  filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  group_by(species,parity, alpha, gamma) %>% 
-  summarise(opt_d = mean(opt_d, na.rm = T)) %>% 
-  ungroup() 
-
-# run model
-alpha_gamma_model <- glmer(opt_d ~ alpha * gamma * parity + (1|species), 
-                           family = binomial(link = "logit"),
-                           data = model_test_data_stats)
-summary(alpha_gamma_model)
-
-
-
-
-a <- model_test_data |> 
-  filter(dev_check == 1) %>%
-  filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
-  filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
-  filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  mutate(msp = round((ze * n)/za, digits = 2)) |>
-  group_by(species,parity, lat, lon, elev, msp, gamma_ex, nest_depth, nest_shade) %>% 
-  summarise(opt_d = round(mean(opt_d, na.rm = T), digits = 2)) %>% 
-  mutate(gamma_ex = round(gamma_ex, digits = 2)) |>
-  ungroup() 
-
-a$species <- gsub("_", " ", a$species)
-a$parity <- ifelse(a$parity == "Oviparous", "O", "V")
-
-write.csv(a, "test.csv")
   

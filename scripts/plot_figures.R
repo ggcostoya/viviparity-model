@@ -129,7 +129,7 @@ embryo_tpc <- tibble(temp = seq(5,35,by = 0.1),
 figure3 <- model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>% 
   group_by(species, lat, lon, elev, parity) %>% 
@@ -174,10 +174,10 @@ figure4 <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  group_by(species, lat, lon, elev, parity, gamma_ex) %>% 
+  group_by(species, lat, lon, elev, parity) %>% 
   summarise(mean_opt_d = mean(opt_d, na.rm = T)) %>% 
   ggplot(aes(x = parity, y = mean_opt_d, fill = parity, shape = parity)) +
   geom_violin(alpha = 0.25, color = NA) +
@@ -197,7 +197,7 @@ figure4 <- model_test_data %>%
     axis.text.x = element_text(size = 12, colour = "black"),
     legend.position = "none"
   ) +
-  ylab(expression(paste(Predicted~optimal~gestation~length~(italic(d)~"*"))))
+  ylab("Predicted optimal gestation length (d*)")
 
 ggsave(figure4, file = "figures/figure4.png", dpi = "retina")
 
@@ -208,10 +208,10 @@ f5a <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  group_by(species, lat, lon, elev, parity, gamma_ex) %>% 
+  group_by(species, lat, lon, elev, parity) %>% 
   summarise(mean_opt_d = mean(opt_d, na.rm = T)) %>% 
   ggplot(aes(x = abs(lat), y = mean_opt_d)) +
   geom_smooth(method = "glm", method.args = list(family = "binomial"),
@@ -229,7 +229,7 @@ f5a <- model_test_data %>%
     axis.line = element_line(),
     axis.ticks = element_line(),
   ) +
-  ylab(expression(paste(Model~prediction~(italic(d)~"*")))) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab("Absolute latitude (°)")+
   theme(plot.title = element_text(size = 12, hjust = 0),
         legend.title = element_blank(),
@@ -241,10 +241,10 @@ f5b <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  group_by(species, lat, lon, elev, parity, gamma_ex) %>% 
+  group_by(species, lat, lon, elev, parity) %>% 
   summarise(mean_opt_d = mean(opt_d, na.rm = T)) %>% 
   ggplot(aes(x = elev, y = mean_opt_d)) +
   geom_smooth(method = "glm", method.args = list(family = "binomial"),
@@ -263,7 +263,7 @@ f5b <- model_test_data %>%
     axis.ticks = element_line(),
     axis.title.y = element_text(colour = "white")
   ) +
-  ylab(expression(paste(Model~prediction~(italic(d)~"*")))) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab("Elevation (m a.s.l.)")+
   theme(plot.title = element_text(size = 12, hjust = 0),
         legend.title = element_blank(),
@@ -275,7 +275,7 @@ f5c <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
   group_by(species, lat, lon, elev, parity, n, za, ze) %>% 
@@ -296,7 +296,7 @@ f5c <- model_test_data %>%
     axis.line = element_line(),
     axis.ticks = element_line(),
   ) +
-  ylab(expression(paste(Model~prediction~(italic(d)~"*")))) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab("Mass-specific production") +
   theme(plot.title = element_text(size = 12, hjust = 0),
         legend.title = element_blank(),
@@ -308,10 +308,10 @@ f5d <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  group_by(species, lat, lon, elev, parity, gamma_ex) %>% 
+  group_by(species, lat, lon, elev, parity) %>% 
   summarise(mean_opt_d = mean(opt_d, na.rm = T),
             tep = mean(tep, na.rm = T)) %>% 
   ggplot(aes(x = abs(tep - 27.57), y = mean_opt_d)) +
@@ -334,7 +334,7 @@ f5d <- model_test_data %>%
     legend.text = element_text(size = 12),
     axis.title.y = element_text(colour = "white")
   ) +
-  ylab(expression(paste(Model~prediction~(italic(d)~"*")))) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab(expression(paste("| ",T[opt[e]] - T[ep], " |"))) +
   coord_cartesian(ylim = c(0.01, 0.97)) +
   guides(colour = guide_legend(override.aes = list(size=4)))
@@ -344,7 +344,7 @@ f5e <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(!is.na(depth)) %>% 
   filter(!is.na(shade)) %>%
   group_by(species, lat, lon, elev, parity, tenv, depth, shade) %>% 
@@ -371,7 +371,7 @@ f5e <- model_test_data %>%
     legend.text = element_text(size = 12),
     legend.position = "top"
   ) +
-  ylab(expression(paste(Model~prediction~(italic(d)~"*")))) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab("Nest depth (cm)")
 
 # panel F
@@ -379,7 +379,7 @@ f5f <- model_test_data %>%
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
+  filter(gamma == 2) %>% 
   filter(!is.na(depth)) %>% 
   filter(!is.na(shade)) %>%
   group_by(species, lat, lon, elev, parity, tenv, depth, shade) %>% 
@@ -407,7 +407,7 @@ f5f <- model_test_data %>%
     legend.position = "top",
     axis.title.y = element_text(colour = "white")
   ) +
-  ylab(expression(paste(Model~prediction~(italic(d)~"*")))) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab("Nest depth (cm)")
 
 # combine top panels
@@ -697,9 +697,12 @@ model_test_data %>%
   
 ## Figure S6 ----
 
-model_test_data %>% 
+# load data
+load("data/model_test_data.RData")
+
+# plot figure S6
+figures6 <- model_test_data %>% 
   as_tibble() %>%
-  filter(!is.na(gamma)) %>%
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>% 
   group_by(parity, species, lat, lon, elev, alpha, gamma) %>% 
@@ -719,27 +722,14 @@ model_test_data %>%
     axis.ticks = element_line(),
     axis.title.x = element_text(size = 16),
   ) +
-  ylab(expression("Model prediction ( "*italic('d*')*" )")) +
+  ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab(expression(gamma)) +
   guides(color = guide_legend(title = "Parity mode"),
          linetype = guide_legend(title = expression(alpha),
                                  theme = theme(legend.title = element_text(size = 16))))
 
+ggsave(figures6, file = "figures/figures6.png", dpi = "retina")
 
-model_test_data %>% 
-  as_tibble() %>%
-  filter(dev_check == 1) %>% 
-  filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
-  filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
-  filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>%
-  group_by(species, lat, lon, elev, parity, n, za, ze) %>% 
-  summarise(mean_opt_d = mean(opt_d, na.rm = T)) %>% 
-  mutate(msp = (n*ze)/za) %>%
-  ggplot(aes(y = (n*ze)/za, x = elev, col = mean_opt_d)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-  
 ## Figure S7 ----
 
 load("data/model_test_data.RData")

@@ -84,7 +84,7 @@ ctmin_e <- mean(tphys_e$ctmin_e, na.rm = T)
 ctmax_e <- mean(tphys_e$ctmax_e, na.rm = T)
 
 # load data on adult thermal physiology and LH traits and additional info
-database <- read.csv( "data/adult_data.csv")
+database <- read.csv("data/adult_data.csv")
 
 # add column to list months when embryonic development occurs
 database$dev <- rep(NA, nrow(database)) 
@@ -108,11 +108,14 @@ for(i in 1:nrow(database)){
 }
 
 # load ecophysiology data
-eco_data <- read.csv("data/ecophysiological_data.csv")
+eco_data <- read.csv("data/eco_data.csv")
+
+# remove "X" columns
+eco_data$X <- NULL
+database$X <- NULL
 
 # merge data for model predictions
-model_data <- merge(eco_data, database, 
-                    by = c("species", "lat", "lon", "elev"))
+model_data <- merge(eco_data, database, by = c("species", "lat", "lon", "elev"))
 
 # add column to check if a month is within months when embryo dev occurs
 model_data$dev_check <- rep(NA, nrow(model_data))
@@ -140,7 +143,6 @@ model_data$fitness <- NA
 
 # filter model data to account for species for which there is information
 model_data <- model_data |> 
-  mutate(gamma = ifelse(!is.na(gamma_ex), NA, gamma)) |> 
   mutate(shade = ifelse(!is.na(nest_shade), NA, shade)) |> 
   mutate(depth = ifelse(!is.na(nest_depth), NA, depth)) |> 
   as_tibble() |>
@@ -165,9 +167,7 @@ for(i in 1:nrow(model_data)){
                    ze = model_data$ze[i],
                    za = model_data$za[i],
                    alpha = model_data$alpha[i],
-                   gamma = ifelse(is.na(model_data$gamma[i]), 
-                                  model_data$gamma_ex[i],
-                                  model_data$gamma[i]))
+                   gamma = model_data$gamma[i])
   
   # keep optimal fitness
   model_data$opt_d[i] <- outcome[1]
@@ -186,10 +186,4 @@ model_test_data <- model_data
 
 # save as an .RData file to account for nested list
 save(model_test_data,file = "data/model_test_data.RData")
-
-## Posterior checks ----
-
-
-
-
 

@@ -9,7 +9,7 @@ library(NicheMapR)
 ## Load data ----
 
 # load data on adult thermal physiology and LH traits and additional info
-database <- read.csv( "data/adult_data.csv")
+database <- read.csv("data/adult_data.csv")
 
 # load embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
@@ -21,7 +21,7 @@ ctmax_e <- mean(tphys_e$ctmax_e, na.rm = T)
 
 ## Run ecophysiological modelling ----
 
-# holder dataset
+# holder data set
 eco_data <- tibble(species = c(), lat = c(), lon = c(), elev = c(),
                    month = c(), tg = c(), tap = c(), tep = c(), 
                    shade = c(), depth = c(), tenv = c())
@@ -29,7 +29,7 @@ eco_data <- tibble(species = c(), lat = c(), lon = c(), elev = c(),
 # loop to predict temperatures
 for(i in 1:nrow(database)){
   
-  # add coordinates in populations too close to sea
+  # slightly modify coordinates in populations too close to sea
   add <- ifelse(paste(database$species[i], database$lat[i], sep = "_") %in% 
                   c("Hemiergis_peronii_-34.5", "Uta_stansburiana_30.436"),
                 0.25, 0)
@@ -38,7 +38,7 @@ for(i in 1:nrow(database)){
   micro <- micro_global(loc = c(database$lon[i] + add, database$lat[i]),
                         elev = database$elev[i],
                         nyears = 10,
-                        timeinterval = 12,
+                        timeinterval = 365,
                         run.gads = 2,
                         Refhyt = 2)
   
@@ -144,10 +144,7 @@ for(i in 1:nrow(database)){
 
 ## Save data ----
 
-# rename before saving
-ecophysiological_data <- eco_data
-
 # write a .csv
-write.csv(ecophysiological_data, "data/ecophysiological_data.csv")
+write.csv(eco_data, "data/eco_data.csv")
 
 
