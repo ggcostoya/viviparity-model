@@ -1,5 +1,5 @@
 
-## Plotting ## 
+## Plotting figures ## 
 
 ## Packages ----
 
@@ -428,81 +428,53 @@ figure5 <- ggarrange(fig5top, fig5bottom, ncol = 1, nrow = 2, heights = c(0.65,0
 # save figure
 ggsave(figure5, file = "figures/figure5.png", dpi = "retina")
 
-## Figure S1 & Figure S2 ----
+## Figure S1 ----
 
 # load embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
+tphys_e$X <- NULL
 
+# re-structure thphys_e data
+tphys_e <- tphys_e |>
+  pivot_longer(cols = c("ctmin_e", "topt_e", "ctmax_e"), 
+              names_to = "trait", values_to = "temp") |> 
+  mutate(trait = ifelse(trait == "ctmin_e", "ctmin",
+                        ifelse(trait == "topt_e", "topt", "ctmax"))) |> 
+  mutate(stage = "Embryo")
+  
 # load adult thermal physiology data
-tphys_a <- read.csv("data/adult_thermal_phys.csv")
+adult_data <- read.csv("data/adult_data.csv")
 
-# filter columns of interest
-tphys_a <- tphys_a %>% select(species, ctmin_a, topt_a, ctmax_a)
+# filter columns of interest and re-structure tphys_a data
+tphys_a <- adult_data |> select(species, parity, ctmin_a, topt_a, ctmax_a) |> 
+  pivot_longer(cols = c("ctmin_a", "topt_a", "ctmax_a"), 
+              names_to = "trait", values_to = "temp") |> 
+  mutate(trait = ifelse(trait == "ctmin_a", "ctmin",
+                        ifelse(trait == "topt_a", "topt", "ctmax"))) |> 
+  mutate(stage = "Adult")
 
-# read SquamBase dataset
-squambase <- read_excel("raw_data/squambase/SquamBase.xlsx")
-
-# re-format the species column
-squambase$species <- gsub(" ", "_", squambase$`Species name (Binomial)`)
-
-# select only the species that are present in the thermal physiology data
-squambase <- squambase %>% filter(species %in% tphys_a$species) %>% 
-  select(parity, species)
-
-# read dominguez-guerrero 
-dg <- read.csv("raw_data/dominguez_guerrero_et_al_2022/dominguez_guerrero_et_al_2022.csv")
-
-# select only species that are present in the thermal physiology data
-dg <- dg %>% mutate(species = paste(genus, species, sep = "_")) %>%
-  filter(species %in% tphys_a$species) %>% select(parity, species)
-
-# bind parity data
-parity <- rbind(squambase, dg) %>% unique() %>% 
-  mutate(parity = ifelse(parity == "NA", "Oviparous", parity)) %>% 
-  filter(parity %in% c("Oviparous", "Viviparous"))
-
-# merge parity with adult thermal physiology data
-tphys_a <- tphys_a %>% left_join(parity, by = "species")
-
-# assign missing parity data
-tphys_a <- tphys_a %>% 
-  mutate(parity = ifelse(species %in% c("Egneria_whitii", "Eulamprus_quoyi"),
-                        "Viviparous", parity)) %>% 
-  mutate(parity = ifelse(is.na(parity), "Oviparous", parity))
-
-# combine adult with embryonic thermal physiology data 
-tphys <- merge(tphys_a, tphys_e, by = c("parity", "species"), all = TRUE) %>%
-  unique() 
-
-# prepare data for figure S1
-s1_data <- tphys %>% 
-  pivot_longer(cols = !c("parity", "species"), 
-               names_to = "trait_stage", values_to = "temp") %>% 
-  mutate(stage = ifelse(grepl("_a", trait_stage), "Adult", "Embryo")) %>% 
-  mutate(trait = ifelse(grepl("topt", trait_stage), "Topt",
-                        ifelse(grepl("ctmax", trait_stage), "CTmax", "CTmin"))) %>% 
-  mutate(trait = factor(trait, levels = c("CTmin", "Topt", "CTmax"))) %>% 
-  filter(!is.na(temp)) %>% unique()
+# combine adult and embryo data
+tphys <- rbind(tphys_a, tphys_e)
 
 # get tphys_summary data 
-s1_summary_data <- s1_data %>% 
+tphys_summary <- tphys %>% 
   group_by(parity, trait, stage) %>% 
   summarise(mean = mean(temp, na.rm = T), 
             sd = sd(temp, na.rm = T)) %>% 
   ungroup()
 
-
 # plot Figure S1
-s1_data %>% 
+figures1 <- tphys %>% 
+  mutate(trait = factor(trait, levels = c("ctmin", "topt", "ctmax"))) %>% 
   ggplot() +
   geom_point(aes(x = trait, y = temp, fill = parity, col = parity, shape = stage),
              position = position_jitterdodge(dodge.width = 1, jitter.width = 0.1), 
              size = 2, alpha = 0.5) +
-  geom_pointrange(data = s1_summary_data,
+  geom_pointrange(data = tphys_summary,
                   aes(x = trait, y = mean, ymin = mean - sd, 
                       ymax = mean + sd, fill = parity, col = parity, shape = stage),
                   position = position_dodge(width = 1), size = 1, linewidth = 0.75) +
-  geom_pointrange(data = s1_summary_data,
+  geom_pointrange(data = tphys_summary,
                   aes(x = trait, y = mean, ymin = mean - sd, 
                       ymax = mean + sd, fill = parity, shape = stage),
                   position = position_dodge(width = 1), 
@@ -526,6 +498,24 @@ s1_data %>%
          color = guide_legend(title = "Parity mode"),
          shape = guide_legend(title = "Life stage"))
 
+# save figure s1
+ggsave(figures1, file = "figures/figureS1.png", dpi = "retina")
+
+## Figure S2 ----
+
+# load embryonic thermal physiology data
+tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
+tphys_e$X <- NULL
+
+# load adult thermal physiology data
+adult_data <- read.csv("data/adult_data.csv")
+
+# filter columns of interest and re-structure tphys_a data
+tphys_a <- adult_data |> select(species, parity, ctmin_a, topt_a, ctmax_a) 
+
+# merge data
+tphys <- merge(tphys_e, tphys_a, by = c("species","parity"), all = TRUE)
+
 # plot figure S2 A 
 s2_A <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
@@ -536,8 +526,8 @@ s2_A <- tphys %>%
   ggplot(aes(x = ctmin_a, y = ctmin_e)) +
   geom_point(aes(col = species), size = 3) +
   geom_smooth(method = "lm", se = FALSE, col = "black") +
-  xlab(bquote("Adult critical thermal minimum ("~CT[min[a]]~","~degree~C~")")) +
-  ylab(bquote("Embryonic critical thermal minimum ( "~CT[min[e]]~","~degree~C~")")) +
+  xlab(bquote(CT[min[a]]~"("~degree~C~")")) +
+  ylab(bquote(CT[min[e]]~"("~degree~C~")")) +
   theme_minimal() +
   theme(
     axis.title = element_text(size = 10),
@@ -558,8 +548,8 @@ s2_B <- tphys %>%
   ggplot(aes(x = topt_a, y = topt_e)) +
   geom_point(aes(col = species), size = 3) +
   geom_smooth(method = "lm", se = FALSE, col = "black") +
-  xlab(bquote("Adult thermal optima ("~T[opt[a]]~","~degree~C~")")) +
-  ylab(bquote("Embryonic thermal optima ("~T[opt[e]]~","~degree~C~")")) +
+  xlab(bquote(T[opt[a]]~"("~degree~C~")")) +
+  ylab(bquote(T[opt[e]]~"("~degree~C~")")) +
   theme_minimal() +
   theme(
     axis.title = element_text(size = 10),
@@ -580,8 +570,8 @@ s2_C <- tphys %>%
   ggplot(aes(x = ctmax_a, y = ctmax_e)) +
   geom_point(aes(col = species), size = 3) +
   geom_smooth(method = "lm", se = FALSE, col = "black") +
-  xlab(bquote("Adult critical thermal maximum ("~CT[max[a]]~","~degree~C~")")) +
-  ylab(bquote("Embryonic critical thermal maximum ( "~CT[max[e]]~","~degree~C~")")) +
+  xlab(bquote(CT[max[a]]~"("~degree~C~")")) +
+  ylab(bquote(CT[max[e]]~"("~degree~C~")")) +
   theme_minimal() +
   theme(
     axis.title = element_text(size = 10),
@@ -592,15 +582,17 @@ s2_C <- tphys %>%
   ) +
   ggtitle("C")
 
-  
-ggarrange(s2_A, s2_B, s2_C, ncol = 1, common.legend = FALSE)
-
+# save 
+figS2 <- ggarrange(s2_A, s2_B, s2_C, ncol = 1, common.legend = FALSE)
+ggsave(figS2, file = "figures/figureS2.png", dpi = "retina")
   
 ## Figure S3 ----
 
+# load model data
 load("data/model_test_data.RData")
 
-model_test_data %>% 
+# plot figure
+figS3 <- model_test_data %>% 
   select(species, parity, lat, elev, dev) %>% 
   unique() %>% 
   mutate(hem = ifelse(lat >0,"Northern hemisphere", "Southern hemisphere")) %>% 
@@ -617,7 +609,7 @@ model_test_data %>%
   scale_fill_manual(values = c("darkorange", "yellowgreen")) +
   scale_x_continuous(breaks = 1:12, expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0), breaks = c(0,25,50,75,100)) +
-  facet_wrap2(vars(hem), axes = "all") +
+  facet_wrap(vars(hem), axes = "all") +
   theme_minimal() +
   theme(legend.position = "top", 
         legend.title = element_blank(),
@@ -629,12 +621,15 @@ model_test_data %>%
   xlab("Month of the year") +
   ylab("% of populations") 
 
+ggsave(figS3, file = "figures/figureS3.png", dpi = "retina")
 
 ## Figure S4 ----
 
+# load data
 load("data/model_test_data.RData")
 
-model_test_data %>% 
+# plot
+figs4 <- model_test_data %>% 
   select(species, parity, lat, elev, eggs_seen, hatchlings_seen, dev) %>% 
   unique()  %>% 
   as_tibble() %>%
@@ -656,7 +651,6 @@ model_test_data %>%
   theme_minimal() +
   theme(axis.title.y = element_blank(),
         legend.title = element_blank(), 
-        #legend.position.inside = FALSE,
         legend.position = "top",
         panel.border = element_rect(fill = NA, linewidth = 0.1),
         panel.grid.minor = element_blank(),
@@ -668,9 +662,16 @@ model_test_data %>%
         strip.text = element_text(size = 14),
         plot.title = element_text(hjust = -0.38, vjust=2.12))
 
+# save figure
+ggsave(figs4, file = "figures/figureS4.png", dpi = "retina")
+
 ## Figure S5 ----
 
-model_test_data %>% 
+# load data
+load("data/model_test_data.RData")
+
+# plot
+figs5 <- model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(!is.na(depth), !is.na(shade)) %>% 
   group_by(parity, species, lat, lon, elev, depth, shade) %>% 
@@ -693,14 +694,15 @@ model_test_data %>%
   ylab(bquote(~T[ep]~"(°C)")) +
   guides(color = guide_legend(title = "Nest shade (%)"))
 
-
+# save figure
+ggsave(figs5, file = "figures/figureS5.png", dpi = "retina")
   
 ## Figure S6 ----
 
 # load data
 load("data/model_test_data.RData")
 
-# plot figure S6
+# plot
 figures6 <- model_test_data %>% 
   as_tibble() %>%
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
@@ -728,67 +730,7 @@ figures6 <- model_test_data %>%
          linetype = guide_legend(title = expression(alpha),
                                  theme = theme(legend.title = element_text(size = 16))))
 
+# save
 ggsave(figures6, file = "figures/figures6.png", dpi = "retina")
 
-## Figure S7 ----
 
-load("data/model_test_data.RData")
-
-lat_panel <- model_test_data %>% 
-  as_tibble() %>%
-  filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
-  filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
-  filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>% 
-  group_by(parity, species, lat, lon, elev, alpha, gamma) %>% 
-  summarise(opt_d = mean(opt_d, na.rm = T)) %>% 
-  ungroup() %>% 
-  group_by(species) %>% 
-  mutate(pops = n()) %>% 
-  filter(pops > 1) %>% 
-  mutate(species = gsub("_", " ", species)) %>%
-  ggplot(aes(x = abs(lat), y = opt_d)) +
-  geom_point(aes(color = species), size = 2.5, alpha = 0.75) +
-  geom_line(aes(color = species, group = species), linewidth = 1) +
-  theme_minimal() +
-  theme(
-    axis.line = element_line(),
-    axis.ticks = element_line(),
-    panel.grid = element_line(linewidth = 0.1),
-    legend.title = element_blank(),
-    legend.text = element_text(face = "italic")
-  ) +
-  ylab(expression("Model prediction ( "*italic('d*')*" )")) +
-  xlab("Absolute latitude (°)")
-
-elev_panel <- model_test_data %>% 
-  as_tibble() %>%
-  filter(alpha == 0.5) %>% 
-  filter(if_else(!is.na(gamma), gamma == 2, TRUE)) %>% 
-  filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
-  filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>% 
-  group_by(parity, species, lat, lon, elev, alpha, gamma) %>% 
-  summarise(opt_d = mean(opt_d, na.rm = T)) %>% 
-  ungroup() %>% 
-  group_by(species) %>% 
-  mutate(pops = n()) %>% 
-  filter(pops > 1) %>% 
-  mutate(species = gsub("_", " ", species)) %>%
-  ggplot(aes(x = elev, y = opt_d)) +
-  geom_point(aes(color = species), size = 2.5, alpha = 0.75) +
-  geom_line(aes(color = species, group = species), linewidth = 1) +
-  theme_minimal() +
-  theme(
-    axis.line = element_line(),
-    axis.ticks = element_line(),
-    panel.grid = element_line(linewidth = 0.1),
-    legend.title = element_blank(),
-    legend.text = element_text(face = "italic"),
-    axis.title.y = element_text(colour = "white")
-  ) +
-  ylab(expression("Model prediction ( "*italic('d*')*" )")) +
-  xlab("Elevation (m a.s.l.)")
-
-# combine latitude and elevation panels wit common legend w
-ggarrange(lat_panel, elev_panel, ncol = 2, common.legend = TRUE,
-          labels = c("A", "B"), legend = "right")
