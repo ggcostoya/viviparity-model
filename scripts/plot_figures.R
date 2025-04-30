@@ -1,6 +1,8 @@
 
 ## Plotting figures ## 
 
+# Note: Each figure can be replicated independently
+
 ## Packages ----
 
 library(ggrepel)
@@ -9,7 +11,7 @@ library(mgcv)
 library(ggh4x)
 library(tidyverse)
 
-## Figure 2 ----
+## Figure 1 ----
 
 # load adult database
 adult_data <- read.csv("data/adult_data.csv")
@@ -75,14 +77,14 @@ elev_plot <-  ggplot(data = adult_data) +
         plot.margin = margin(r = -100, t = 50, b = 10, l = 100))
 
 # combine plots
-figure2 <- ggarrange(elev_plot, world_plot, lat_plot,
+figure1 <- ggarrange(elev_plot, world_plot, lat_plot,
                      widths = c(0.15, 0.6, 0.1),
                      ncol = 3)
 
 # save figure
-ggsave(figure2, file = "figures/figure2.png", dpi = "retina")
+ggsave(figure1, file = "figures/figure1.png", dpi = "retina")
 
-## Figure 3 ----
+## Figure 2 ----
 
 # load model data
 load("data/model_test_data.RData")
@@ -121,12 +123,13 @@ tpc <- function(temps, ctmin, topt, ctmax){
   return(perf)
 }
 
+# define embryo tpc
 embryo_tpc <- tibble(temp = seq(5,35,by = 0.1),
                      perf = tpc(temp, ctmin = mean(tphys_e$ctmin_e, na.rm = T),
                                 topt = mean(tphys_e$topt_e, na.rm = T),
                                 ctmax = mean(tphys_e$ctmax_e, na.rm = T)))
 # plot 
-figure3 <- model_test_data %>% 
+figure2 <- model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(alpha == 0.5) %>% 
   filter(gamma == 2) %>% 
@@ -166,11 +169,14 @@ figure3 <- model_test_data %>%
   xlab("Temperature (°C)") +
   ylab("Parity mode")
 
-ggsave(figure3, file = "figures/figure3.png", dpi = "retina")
+ggsave(figure2, file = "figures/figure2.png", dpi = "retina")
 
-## Figure 4 ----
+## Figure 3 ----
 
-figure4 <- model_test_data %>% 
+# load model data
+load("data/model_test_data.RData")
+
+figure3 <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -199,12 +205,15 @@ figure4 <- model_test_data %>%
   ) +
   ylab("Predicted optimal gestation length (d*)")
 
-ggsave(figure4, file = "figures/figure4.png", dpi = "retina")
+ggsave(figure3, file = "figures/figure4.png", dpi = "retina")
 
-## Figure 5 ----
+## Figure 4 ----
+
+# load model data
+load("data/model_test_data.RData")
 
 # Panel A 
-f5a <- model_test_data %>% 
+f4a <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -237,7 +246,7 @@ f5a <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # Panel B
-f5b <- model_test_data %>% 
+f4b <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -271,7 +280,7 @@ f5b <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # Panel C
-f5c <- model_test_data %>% 
+f4c <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -304,7 +313,7 @@ f5c <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # panel D
-f5d <- model_test_data %>% 
+f4d <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -340,7 +349,7 @@ f5d <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # panel E
-f5e <- model_test_data %>% 
+f4e <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -375,7 +384,7 @@ f5e <- model_test_data %>%
   xlab("Nest depth (cm)")
 
 # panel F
-f5f <- model_test_data %>% 
+f4f <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -411,24 +420,24 @@ f5f <- model_test_data %>%
   xlab("Nest depth (cm)")
 
 # combine top panels
-fig5top <- ggarrange(f5a, f5b, f5c, f5d, ncol = 2, nrow = 2, 
+fig4top <- ggarrange(f4a, f4b, f4c, f54, ncol = 2, nrow = 2, 
           common.legend = TRUE, legend = "top",
           labels = c("A)", "B)", "C)", "D)"),
           font.label = list(face = "plain"))
 
 # combine bottom panels
-fig5bottom <- ggarrange(f5e, f5f, ncol = 2, nrow = 1, 
+fig4bottom <- ggarrange(f4e, f4f, ncol = 2, nrow = 1, 
                         common.legend = TRUE, legend = "top",
                         labels = c("E)", "F)"),
                         font.label = list(face = "plain"))
 
 # combine all panels
-figure5 <- ggarrange(fig5top, fig5bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
+figure4 <- ggarrange(fi45top, fig4bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
 
 # save figure
-ggsave(figure5, file = "figures/figure5.png", dpi = "retina")
+ggsave(figure4, file = "figures/figure4.png", dpi = "retina")
 
-## Figure S1 ----
+## Figure S2 ----
 
 # load embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
@@ -464,7 +473,7 @@ tphys_summary <- tphys %>%
   ungroup()
 
 # plot Figure S1
-figures1 <- tphys %>% 
+figures2 <- tphys %>% 
   mutate(trait = factor(trait, levels = c("ctmin", "topt", "ctmax"))) %>% 
   ggplot() +
   geom_point(aes(x = trait, y = temp, fill = parity, col = parity, shape = stage),
@@ -499,9 +508,9 @@ figures1 <- tphys %>%
          shape = guide_legend(title = "Life stage"))
 
 # save figure s1
-ggsave(figures1, file = "figures/figureS1.png", dpi = "retina")
+ggsave(figures2, file = "figures/figures2.png", dpi = "retina")
 
-## Figure S2 ----
+## Figure S3 ----
 
 # load embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
@@ -517,7 +526,7 @@ tphys_a <- adult_data |> select(species, parity, ctmin_a, topt_a, ctmax_a)
 tphys <- merge(tphys_e, tphys_a, by = c("species","parity"), all = TRUE)
 
 # plot figure S2 A 
-s2_A <- tphys %>% 
+figs3A <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
   select(parity, species, ctmin_a, ctmin_e) %>%
   filter(!is.na(ctmin_e)) %>%
@@ -539,7 +548,7 @@ s2_A <- tphys %>%
   ggtitle("A")
 
 # plot figure S2 B
-s2_B <- tphys %>% 
+figs3B <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
   select(parity, species, topt_a, topt_e) %>%
   filter(!is.na(topt_e)) %>%
@@ -561,7 +570,7 @@ s2_B <- tphys %>%
   ggtitle("B")
 
 # plot figure S2 C
-s2_C <- tphys %>% 
+figs3C <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
   select(parity, species, ctmax_a, ctmax_e) %>%
   filter(!is.na(ctmax_e)) %>%
@@ -583,46 +592,9 @@ s2_C <- tphys %>%
   ggtitle("C")
 
 # save 
-figS2 <- ggarrange(s2_A, s2_B, s2_C, ncol = 1, common.legend = FALSE)
-ggsave(figS2, file = "figures/figureS2.png", dpi = "retina")
+figs3 <- ggarrange(figs3A, figs3B, figs3C, ncol = 1, common.legend = FALSE)
+ggsave(figs3, file = "figures/figureS3.png", dpi = "retina")
   
-## Figure S3 ----
-
-# load model data
-load("data/model_test_data.RData")
-
-# plot figure
-figS3 <- model_test_data %>% 
-  select(species, parity, lat, elev, dev) %>% 
-  unique() %>% 
-  mutate(hem = ifelse(lat >0,"Northern hemisphere", "Southern hemisphere")) %>% 
-  group_by(parity, hem) %>%
-  mutate(n_pop = n()) %>% 
-  as_tibble() %>% 
-  unnest(dev) %>%
-  group_by(parity, hem, dev, n_pop) %>% 
-  summarise(howmany = n()) %>%
-  mutate(freq = howmany/n_pop) %>%
-  ungroup() %>%
-  ggplot(aes(x = dev, y = freq*100, fill = parity)) +
-  geom_col(col = "white", position = position_dodge(width = 1, preserve = "single")) +
-  scale_fill_manual(values = c("darkorange", "yellowgreen")) +
-  scale_x_continuous(breaks = 1:12, expand = c(0,0)) +
-  scale_y_continuous(expand = c(0,0), breaks = c(0,25,50,75,100)) +
-  facet_wrap(vars(hem), axes = "all") +
-  theme_minimal() +
-  theme(legend.position = "top", 
-        legend.title = element_blank(),
-        strip.text = element_text(size = 10),
-        axis.line = element_line(),
-        axis.ticks = element_line(),
-        legend.text = element_text(size = 10),
-        panel.grid = element_blank()) +
-  xlab("Month of the year") +
-  ylab("% of populations") 
-
-ggsave(figS3, file = "figures/figureS3.png", dpi = "retina")
-
 ## Figure S4 ----
 
 # load data
