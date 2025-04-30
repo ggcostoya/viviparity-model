@@ -10,7 +10,7 @@ library(glmmTMB)
 library(mgcv)
 library(MuMIn)
 
-##  Table S1 ----
+##  Table S2 ----
 
 # read embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
@@ -30,25 +30,11 @@ adult_data <- read_csv("data/adult_data.csv")
 tphys_a_sum <- adult_data |> 
   pivot_longer(cols = c("topt_a", "ctmin_a", "ctmax_a"), 
                names_to = "trait", values_to = "value") |>
-  group_by(parity, trait) |> # remove parity groupping for generall averages
+  group_by(parity, trait) |> # remove parity grouping for general averages
   summarise(mean = mean(value, na.rm = T), sd = sd(value, na.rm = T)) 
 
 # species for which both adult and embryo thermal data was available
 length(intersect(tphys_e$species, unique(adult_data$species)))
-
-##  Table S2 ----
-
-# read adult data 
-adult_data <- read_csv("data/adult_data.csv")
-
-# summarize Topt vs Tpref
-adult_data |> 
-  group_by(source) |> # remove parity grouping for general averages
-  summarise(value = mean(topt_a, na.rm = T),
-            sdd = sd(topt_a, na.rm = T))
-
-# table number for each
-table(adult_data$source, adult_data$parity)
 
 ##  Table S3 ----
 
@@ -179,6 +165,9 @@ summary(model)
 MuMIn::r.squaredGLMM(model)
 
 ## Table S8 ----
+
+# read model_data
+load("data/model_test_data.RData")
 
 tables8 <- model_test_data |> 
   filter(dev_check == 1) |>
