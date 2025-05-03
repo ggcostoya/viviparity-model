@@ -36,7 +36,7 @@ Life-history traits evolve to optimize fitness trade-offs over ontogeny. Potenti
 
     -   `model_test_data.RData`: Population and month species data to test the predictive accuracy of our model. This data contains all information also contained on `adult_data.csv` and `eco_data.csv`. This data also contains columns to determine whether or not a month falls within the period when embryonic development is known to occur (`dev_check`, `0` if the month does not fall within the period and `1` if it does), for the values of the parameters $\alpha$ and $\gamma$ and for the model's prediction ( $d^*$, `opt_d`) and fitness of that strategy.
 
--   `figures/` : Contains manuscript and supplementary materials figures in `.png` format.
+-   `figures/` : Contains manuscript and supplementary materials figures in `.png` format and/or `.pdf` format. 
 
 -   `scripts/`:
 
