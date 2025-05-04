@@ -82,7 +82,7 @@ figure1 <- ggarrange(elev_plot, world_plot, lat_plot,
                      ncol = 3)
 
 # save figure
-ggsave(figure1, file = "figures/figure1.png", dpi = "retina")
+ggsave(figure1, file = "figures/figure1.png", dpi = "retina", bg = "white")
 
 ## Figure 2 ----
 
@@ -169,7 +169,9 @@ figure2 <- model_test_data %>%
   xlab("Temperature (°C)") +
   ylab("Parity mode")
 
-ggsave(figure2, file = "figures/figure2.png", dpi = "retina")
+
+ggsave(figure2, file = "figures/figure2.png", dpi = "retina", bg = "white",
+       width = 5, height = 3.25, unit = "in")
 
 ## Figure 3 ----
 
@@ -205,7 +207,8 @@ figure3 <- model_test_data %>%
   ) +
   ylab("Predicted optimal gestation length (d*)")
 
-ggsave(figure3, file = "figures/figure4.png", dpi = "retina")
+ggsave(figure3, file = "figures/figure3.png", dpi = "retina", bg = "white",
+       width = 3.25, height = 4, unit = "in")
 
 ## Figure 4 ----
 
@@ -420,7 +423,7 @@ f4f <- model_test_data %>%
   xlab("Nest depth (cm)")
 
 # combine top panels
-fig4top <- ggarrange(f4a, f4b, f4c, f54, ncol = 2, nrow = 2, 
+fig4top <- ggarrange(f4a, f4b, f4c, f4d, ncol = 2, nrow = 2, 
           common.legend = TRUE, legend = "top",
           labels = c("A)", "B)", "C)", "D)"),
           font.label = list(face = "plain"))
@@ -432,10 +435,11 @@ fig4bottom <- ggarrange(f4e, f4f, ncol = 2, nrow = 1,
                         font.label = list(face = "plain"))
 
 # combine all panels
-figure4 <- ggarrange(fi45top, fig4bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
+figure4 <- ggarrange(fig4top, fig4bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
 
 # save figure
-ggsave(figure4, file = "figures/figure4.png", dpi = "retina")
+ggsave(figure4, file = "figures/figure4.png", dpi = "retina", bg = "white",
+       height = 9, width = 6, unit = "in")
 
 ## Figure S2 ----
 
@@ -508,7 +512,8 @@ figures2 <- tphys %>%
          shape = guide_legend(title = "Life stage"))
 
 # save figure s1
-ggsave(figures2, file = "figures/figures2.png", dpi = "retina")
+ggsave(figures2, file = "figures/figures2.png", dpi = "retina",
+       width = 5, height = 4, unit = "in", bg = "white")
 
 ## Figure S3 ----
 
@@ -593,7 +598,8 @@ figs3C <- tphys %>%
 
 # save 
 figs3 <- ggarrange(figs3A, figs3B, figs3C, ncol = 1, common.legend = FALSE)
-ggsave(figs3, file = "figures/figureS3.png", dpi = "retina")
+ggsave(figs3, file = "figures/figureS3.png", dpi = "retina", bg = "white",
+       height = 6, width = 4, unit = "in")
   
 ## Figure S4 ----
 
@@ -635,7 +641,8 @@ figs4 <- model_test_data %>%
         plot.title = element_text(hjust = -0.38, vjust=2.12))
 
 # save figure
-ggsave(figs4, file = "figures/figureS4.png", dpi = "retina")
+ggsave(figs4, file = "figures/figureS4.png", dpi = "retina", bg = "white",
+       height = 8, width = 5, unit = "in")
 
 ## Figure S5 ----
 
@@ -667,7 +674,8 @@ figs5 <- model_test_data %>%
   guides(color = guide_legend(title = "Nest shade (%)"))
 
 # save figure
-ggsave(figs5, file = "figures/figureS5.png", dpi = "retina")
+ggsave(figs5, file = "figures/figureS5.png", dpi = "retina", bg = "white",
+       height = 3, width = 5, unit = "in")
   
 ## Figure S6 ----
 
@@ -703,6 +711,7 @@ figures6 <- model_test_data %>%
                                  theme = theme(legend.title = element_text(size = 16))))
 
 # save
-ggsave(figures6, file = "figures/figures6.png", dpi = "retina")
+ggsave(figures6, file = "figures/figures6.png", dpi = "retina", bg = "white",
+       height = 3, width = 4, unit = "in")
 
 
