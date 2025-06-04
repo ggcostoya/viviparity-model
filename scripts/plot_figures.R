@@ -11,7 +11,7 @@ library(mgcv)
 library(ggh4x)
 library(tidyverse)
 
-## Figure 1 ----
+## Figure 2 ----
 
 # load adult database
 adult_data <- read.csv("data/adult_data.csv")
@@ -77,14 +77,14 @@ elev_plot <-  ggplot(data = adult_data) +
         plot.margin = margin(r = -100, t = 50, b = 10, l = 100))
 
 # combine plots
-figure1 <- ggarrange(elev_plot, world_plot, lat_plot,
+figure2 <- ggarrange(elev_plot, world_plot, lat_plot,
                      widths = c(0.15, 0.6, 0.1),
                      ncol = 3)
 
 # save figure
-ggsave(figure1, file = "figures/figure1.png", dpi = "retina", bg = "white")
+ggsave(figure2, file = "figures/figure2.png", dpi = 350, bg = "white")
 
-## Figure 2 ----
+## Figure 3 ----
 
 # load model data
 load("data/model_test_data.RData")
@@ -129,7 +129,7 @@ embryo_tpc <- tibble(temp = seq(5,35,by = 0.1),
                                 topt = mean(tphys_e$topt_e, na.rm = T),
                                 ctmax = mean(tphys_e$ctmax_e, na.rm = T)))
 # plot 
-figure2 <- model_test_data %>% 
+figure3 <- model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(alpha == 0.5) %>% 
   filter(gamma == 2) %>% 
@@ -170,15 +170,15 @@ figure2 <- model_test_data %>%
   ylab("Parity mode")
 
 
-ggsave(figure2, file = "figures/figure2.png", dpi = "retina", bg = "white",
+ggsave(figure3, file = "figures/figure3.png", dpi = 350, bg = "white",
        width = 5, height = 3.25, unit = "in")
 
-## Figure 3 ----
+## Figure 4 ----
 
 # load model data
 load("data/model_test_data.RData")
 
-figure3 <- model_test_data %>% 
+figure4 <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -207,16 +207,16 @@ figure3 <- model_test_data %>%
   ) +
   ylab("Predicted optimal gestation length (d*)")
 
-ggsave(figure3, file = "figures/figure3.png", dpi = "retina", bg = "white",
+ggsave(figure4, file = "figures/figure4.png", dpi = 350, bg = "white",
        width = 3.25, height = 4, unit = "in")
 
-## Figure 4 ----
+## Figure 5 ----
 
 # load model data
 load("data/model_test_data.RData")
 
 # Panel A 
-f4a <- model_test_data %>% 
+f5a <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -249,7 +249,7 @@ f4a <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # Panel B
-f4b <- model_test_data %>% 
+f5b <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -283,7 +283,7 @@ f4b <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # Panel C
-f4c <- model_test_data %>% 
+f5c <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -316,7 +316,7 @@ f4c <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # panel D
-f4d <- model_test_data %>% 
+f5d <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -352,7 +352,7 @@ f4d <- model_test_data %>%
   guides(colour = guide_legend(override.aes = list(size=4)))
 
 # panel E
-f4e <- model_test_data %>% 
+f5e <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -387,7 +387,7 @@ f4e <- model_test_data %>%
   xlab("Nest depth (cm)")
 
 # panel F
-f4f <- model_test_data %>% 
+f5f <- model_test_data %>% 
   as_tibble() %>%
   filter(dev_check == 1) %>% 
   filter(alpha == 0.5) %>% 
@@ -423,25 +423,25 @@ f4f <- model_test_data %>%
   xlab("Nest depth (cm)")
 
 # combine top panels
-fig4top <- ggarrange(f4a, f4b, f4c, f4d, ncol = 2, nrow = 2, 
+fig5top <- ggarrange(f5a, f5b, f5c, f5d, ncol = 2, nrow = 2, 
           common.legend = TRUE, legend = "top",
           labels = c("A)", "B)", "C)", "D)"),
           font.label = list(face = "plain"))
 
 # combine bottom panels
-fig4bottom <- ggarrange(f4e, f4f, ncol = 2, nrow = 1, 
+fig5bottom <- ggarrange(f5e, f5f, ncol = 2, nrow = 1, 
                         common.legend = TRUE, legend = "top",
                         labels = c("E)", "F)"),
                         font.label = list(face = "plain"))
 
 # combine all panels
-figure4 <- ggarrange(fig4top, fig4bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
+figure5 <- ggarrange(fig5top, fig5bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
 
 # save figure
-ggsave(figure4, file = "figures/figure4.png", dpi = "retina", bg = "white",
+ggsave(figure5, file = "figures/figure5.png", dpi = 350, bg = "white",
        height = 9, width = 6, unit = "in")
 
-## Figure S2 ----
+## Figure S1 ----
 
 # load embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
@@ -515,7 +515,7 @@ figures2 <- tphys %>%
 ggsave(figures2, file = "figures/figures2.png", dpi = "retina",
        width = 5, height = 4, unit = "in", bg = "white")
 
-## Figure S3 ----
+## Figure S2 ----
 
 # load embryonic thermal physiology data
 tphys_e <- read.csv("data/embryonic_thermal_phys.csv")
@@ -601,7 +601,7 @@ figs3 <- ggarrange(figs3A, figs3B, figs3C, ncol = 1, common.legend = FALSE)
 ggsave(figs3, file = "figures/figureS3.png", dpi = "retina", bg = "white",
        height = 6, width = 4, unit = "in")
   
-## Figure S4 ----
+## Figure S3 ----
 
 # load data
 load("data/model_test_data.RData")
@@ -644,7 +644,7 @@ figs4 <- model_test_data %>%
 ggsave(figs4, file = "figures/figureS4.png", dpi = "retina", bg = "white",
        height = 8, width = 5, unit = "in")
 
-## Figure S5 ----
+## Figure S4 ----
 
 # load data
 load("data/model_test_data.RData")
@@ -677,7 +677,7 @@ figs5 <- model_test_data %>%
 ggsave(figs5, file = "figures/figureS5.png", dpi = "retina", bg = "white",
        height = 3, width = 5, unit = "in")
   
-## Figure S6 ----
+## Figure S5 ----
 
 # load data
 load("data/model_test_data.RData")
