@@ -205,6 +205,10 @@ figure4 <- model_test_data %>%
     axis.text.x = element_text(size = 12, colour = "black"),
     legend.position = "none"
   ) +
+  guides(
+    y = "axis_truncated",
+    x = "axis_truncated"
+  ) +
   ylab("Predicted optimal gestation length (d*)")
 
 ggsave(figure4, file = "figures/figure4.png", dpi = 350, bg = "white",
