@@ -169,8 +169,8 @@ figure3 <- model_test_data %>%
   xlab("Temperature (°C)") +
   ylab("Parity mode")
 
-
-ggsave(figure3, file = "figures/figure3.png", dpi = 350, bg = "white",
+# save figure
+ggsave(figure3, file = "figures/figure3.jpg", dpi = 300, bg = "white",
        width = 5, height = 3.25, unit = "in")
 
 ## Figure 4 ----
@@ -211,7 +211,7 @@ figure4 <- model_test_data %>%
   ) +
   ylab("Predicted optimal gestation length (d*)")
 
-ggsave(figure4, file = "figures/figure4.png", dpi = 350, bg = "white",
+ggsave(figure4, file = "figures/figure4.jpg", dpi = 350, bg = "white",
        width = 3.25, height = 4, unit = "in")
 
 ## Figure 5 ----
@@ -250,7 +250,9 @@ f5a <- model_test_data %>%
   theme(plot.title = element_text(size = 12, hjust = 0),
         legend.title = element_blank(),
         legend.text = element_text(size = 12))  +
-  guides(colour = guide_legend(override.aes = list(size=4)))
+  guides(colour = guide_legend(override.aes = list(size=4)),
+         x = "axis_truncated", 
+         y = "axis_truncated")
 
 # Panel B
 f5b <- model_test_data %>% 
@@ -271,6 +273,7 @@ f5b <- model_test_data %>%
   scale_fill_manual(values = c("orange2", "yellowgreen")) +
   scale_color_manual(values = c("orange2", "yellowgreen")) +
   scale_shape_manual(values = c(21, 23)) +
+  scale_x_continuous(limits = c(0,4200)) +
   theme_minimal() +
   theme(
     axis.title = element_text(size = 10),
@@ -284,7 +287,9 @@ f5b <- model_test_data %>%
   theme(plot.title = element_text(size = 12, hjust = 0),
         legend.title = element_blank(),
         legend.text = element_text(size = 12))  +
-  guides(colour = guide_legend(override.aes = list(size=4)))
+  guides(colour = guide_legend(override.aes = list(size=4)),
+         x = "axis_truncated", 
+         y = "axis_truncated")
 
 # Panel C
 f5c <- model_test_data %>% 
@@ -305,6 +310,7 @@ f5c <- model_test_data %>%
   scale_fill_manual(values = c("orange2", "yellowgreen")) +
   scale_color_manual(values = c("orange2", "yellowgreen")) +
   scale_shape_manual(values = c(21, 23)) +
+  scale_x_continuous(breaks = seq(0,1,0.25), limits = c(0,1)) +
   theme_minimal() +
   theme(
     axis.title = element_text(size = 10),
@@ -317,7 +323,9 @@ f5c <- model_test_data %>%
   theme(plot.title = element_text(size = 12, hjust = 0),
         legend.title = element_blank(),
         legend.text = element_text(size = 12))  +
-  guides(colour = guide_legend(override.aes = list(size=4)))
+  guides(colour = guide_legend(override.aes = list(size=4)),
+         x = "axis_truncated", 
+         y = "axis_truncated")
 
 # panel D
 f5d <- model_test_data %>% 
@@ -339,6 +347,7 @@ f5d <- model_test_data %>%
   scale_fill_manual(values = c("orange2", "yellowgreen")) +
   scale_color_manual(values = c("orange2", "yellowgreen")) +
   scale_shape_manual(values = c(21, 23)) +
+  scale_x_continuous(breaks = seq(0,20,5), limits = c(0,20)) +
   theme_minimal() +
   theme(
     axis.title = element_text(size = 10),
@@ -353,7 +362,9 @@ f5d <- model_test_data %>%
   ylab(expression(paste(Model~prediction~(d~"*")))) +
   xlab(expression(paste("| ",T[opt[e]] - T[ep], " |"))) +
   coord_cartesian(ylim = c(0.01, 0.97)) +
-  guides(colour = guide_legend(override.aes = list(size=4)))
+  guides(colour = guide_legend(override.aes = list(size=4)),
+         x = "axis_truncated", 
+         y = "axis_truncated")
 
 # panel E
 f5e <- model_test_data %>% 
@@ -388,7 +399,8 @@ f5e <- model_test_data %>%
     legend.position = "top"
   ) +
   ylab(expression(paste(Model~prediction~(d~"*")))) +
-  xlab("Nest depth (cm)")
+  xlab("Nest depth (cm)") +
+  guides(x = "axis_truncated", y = "axis_truncated")
 
 # panel F
 f5f <- model_test_data %>% 
@@ -424,25 +436,26 @@ f5f <- model_test_data %>%
     axis.title.y = element_text(colour = "white")
   ) +
   ylab(expression(paste(Model~prediction~(d~"*")))) +
-  xlab("Nest depth (cm)")
+  xlab("Nest depth (cm)") +
+  guides(x = "axis_truncated", y = "axis_truncated")
 
 # combine top panels
 fig5top <- ggarrange(f5a, f5b, f5c, f5d, ncol = 2, nrow = 2, 
           common.legend = TRUE, legend = "top",
           labels = c("A)", "B)", "C)", "D)"),
-          font.label = list(face = "plain"))
+          font.label = list(face = "plain", size = 12))
 
 # combine bottom panels
 fig5bottom <- ggarrange(f5e, f5f, ncol = 2, nrow = 1, 
                         common.legend = TRUE, legend = "top",
                         labels = c("E)", "F)"),
-                        font.label = list(face = "plain"))
+                        font.label = list(face = "plain", size = 12))
 
 # combine all panels
 figure5 <- ggarrange(fig5top, fig5bottom, ncol = 1, nrow = 2, heights = c(0.65,0.35))
 
 # save figure
-ggsave(figure5, file = "figures/figure5.png", dpi = 350, bg = "white",
+ggsave(figure5, file = "figures/figure5.jpg", dpi = 350, bg = "white",
        height = 9, width = 6, unit = "in")
 
 ## Figure S1 ----
@@ -481,7 +494,7 @@ tphys_summary <- tphys %>%
   ungroup()
 
 # plot Figure S1
-figures2 <- tphys %>% 
+figureS1 <- tphys %>% 
   mutate(trait = factor(trait, levels = c("ctmin", "topt", "ctmax"))) %>% 
   ggplot() +
   geom_point(aes(x = trait, y = temp, fill = parity, col = parity, shape = stage),
@@ -516,7 +529,7 @@ figures2 <- tphys %>%
          shape = guide_legend(title = "Life stage"))
 
 # save figure s1
-ggsave(figures2, file = "figures/figures2.png", dpi = "retina",
+ggsave(figureS1, file = "figures/figureS1.jpg", dpi = 350,
        width = 5, height = 4, unit = "in", bg = "white")
 
 ## Figure S2 ----
@@ -535,7 +548,7 @@ tphys_a <- adult_data |> select(species, parity, ctmin_a, topt_a, ctmax_a)
 tphys <- merge(tphys_e, tphys_a, by = c("species","parity"), all = TRUE)
 
 # plot figure S2 A 
-figs3A <- tphys %>% 
+figsS2A <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
   select(parity, species, ctmin_a, ctmin_e) %>%
   filter(!is.na(ctmin_e)) %>%
@@ -557,7 +570,7 @@ figs3A <- tphys %>%
   ggtitle("A")
 
 # plot figure S2 B
-figs3B <- tphys %>% 
+figsS2B <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
   select(parity, species, topt_a, topt_e) %>%
   filter(!is.na(topt_e)) %>%
@@ -579,7 +592,7 @@ figs3B <- tphys %>%
   ggtitle("B")
 
 # plot figure S2 C
-figs3C <- tphys %>% 
+figsS2C <- tphys %>% 
   mutate(species = gsub("_", " ", species)) %>% 
   select(parity, species, ctmax_a, ctmax_e) %>%
   filter(!is.na(ctmax_e)) %>%
@@ -601,8 +614,8 @@ figs3C <- tphys %>%
   ggtitle("C")
 
 # save 
-figs3 <- ggarrange(figs3A, figs3B, figs3C, ncol = 1, common.legend = FALSE)
-ggsave(figs3, file = "figures/figureS3.png", dpi = "retina", bg = "white",
+figsS2 <- ggarrange(figsS2A, figsS2B, figsS2C, ncol = 1, common.legend = FALSE)
+ggsave(figsS2, file = "figures/figureS2.jpg", dpi = 350, bg = "white",
        height = 6, width = 4, unit = "in")
   
 ## Figure S3 ----
@@ -611,7 +624,7 @@ ggsave(figs3, file = "figures/figureS3.png", dpi = "retina", bg = "white",
 load("data/model_test_data.RData")
 
 # plot
-figs4 <- model_test_data %>% 
+figS3 <- model_test_data %>% 
   select(species, parity, lat, elev, eggs_seen, hatchlings_seen, dev) %>% 
   unique()  %>% 
   as_tibble() %>%
@@ -645,7 +658,7 @@ figs4 <- model_test_data %>%
         plot.title = element_text(hjust = -0.38, vjust=2.12))
 
 # save figure
-ggsave(figs4, file = "figures/figureS4.png", dpi = "retina", bg = "white",
+ggsave(figS3, file = "figures/figureS3.jpg", dpi = 350 bg = "white",
        height = 8, width = 5, unit = "in")
 
 ## Figure S4 ----
@@ -654,7 +667,7 @@ ggsave(figs4, file = "figures/figureS4.png", dpi = "retina", bg = "white",
 load("data/model_test_data.RData")
 
 # plot
-figs5 <- model_test_data %>% 
+figS4 <- model_test_data %>% 
   filter(dev_check == 1) %>%
   filter(!is.na(depth), !is.na(shade)) %>% 
   group_by(parity, species, lat, lon, elev, depth, shade) %>% 
@@ -678,7 +691,7 @@ figs5 <- model_test_data %>%
   guides(color = guide_legend(title = "Nest shade (%)"))
 
 # save figure
-ggsave(figs5, file = "figures/figureS5.png", dpi = "retina", bg = "white",
+ggsave(figS4, file = "figures/figureS4.jpg", dpi = 350, bg = "white",
        height = 3, width = 5, unit = "in")
   
 ## Figure S5 ----
@@ -687,7 +700,7 @@ ggsave(figs5, file = "figures/figureS5.png", dpi = "retina", bg = "white",
 load("data/model_test_data.RData")
 
 # plot
-figures6 <- model_test_data %>% 
+figureS5 <- model_test_data %>% 
   as_tibble() %>%
   filter(if_else(!is.na(depth), depth == 5, TRUE)) %>% 
   filter(if_else(!is.na(shade), shade == 0.5, TRUE)) %>% 
@@ -715,7 +728,7 @@ figures6 <- model_test_data %>%
                                  theme = theme(legend.title = element_text(size = 16))))
 
 # save
-ggsave(figures6, file = "figures/figures6.png", dpi = "retina", bg = "white",
+ggsave(figureS5, file = "figures/figureS5.jpg", dpi = 350, bg = "white",
        height = 3, width = 4, unit = "in")
 
 

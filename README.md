@@ -1,4 +1,4 @@
-# Live birth in lizards: A process-based model for the roles of temperature, behavior and life history
+# Live birth in lizards: A process-based model for the roles of temperature, behavior, and life history
 
 Guillermo Garcia-Costoya<sup>1</sup>, Saúl Domínguez-Guerrero<sup>2,3</sup>, Lutz Fromhage<sup>4</sup>, Matthew E. Gifford<sup>5</sup>, Eric A. Riddell<sup>6</sup>, Michael L. Logan<sup>1</sup>.
 
