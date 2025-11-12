@@ -16,6 +16,8 @@ Affiliations:
 
 <sup>6</sup>Department of Biology, University of North Carolina - Chapel Hill, Chapel Hill, NC, 27599, USA.
 
+The work accompannying this repository is published in *Evolution Letters*: https://academic.oup.com/evlett/advance-article/doi/10.1093/evlett/qraf043/8321751?login=false
+
 ### Abstract
 
 Life-history traits evolve to optimize fitness trade-offs over ontogeny. Potentially to mediate the trade-off between survival and fecundity, multiple animal groups have independently evolved live birth (viviparity), including at least 70 transitions in lizards alone. In lizards, viviparity is thought to evolve as a mechanism to improve embryonic development in cold climates (cold climate hypothesis, or CCH), possibly at the expense of the mother’s survival. Past comparative studies often align with the CCH’s predictions, but they usually treat core features of the hypothesis (e.g., the roles played by behavioral thermoregulation and variation in life-history traits) as implicit and, most importantly, typically infer process from pattern rather than testing causal mechanisms, leaving the CCH without unequivocal support. To address this, we developed a process-based model that integrates behavior, thermal physiology, life history, and climate to predict optimal gestation length. We generated a comprehensive trait database of 89 globally distributed lizard populations that vary in parity mode, and we used ecophysiological modelling to test our model’s predictive power. Our model produced generally accurate predictions, strongly supporting the hypothesis that cold climates favor the evolution of viviparity in lizards and revealing the ecological contexts and underlying mechanisms by which this life history strategy evolves. 
